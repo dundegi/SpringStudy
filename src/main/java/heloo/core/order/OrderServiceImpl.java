@@ -1,15 +1,20 @@
 package heloo.core.order;
 
 import heloo.core.discount.DiscountPolicy;
-import heloo.core.discount.FixDiscountPolicy;
 import heloo.core.member.Member;
 import heloo.core.member.MemberRepository;
-import heloo.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService{
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final MemberRepository memberRepository;
+    //private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    //private final DiscountPolicy discountPolicy = new RateDiscountPolijcy();
+    private DiscountPolicy discountPolicy;  //인터페이스에 대한 의존, 그러나 null
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.lang.Nullable;
+
+import java.awt.*;
+import java.util.Optional;
 
 public class AutowiredTest {
 
@@ -17,10 +21,21 @@ public class AutowiredTest {
 
     static class TestBean {
 
-        @Autowired(required = false)
+        @Autowired(required = false) //메소드 자체가 호출이 안 됨
         public void setNoBean1(Member noBean1){
-            System.out.println("noBean1 = " + noBean1);
+            System.out.println("setNoBean1 = " + noBean1);
         }
+
+        @Autowired
+        public void setNoBean2(@Nullable Member member){
+            System.out.println("setNoBean2 = " + member);
+        }
+
+        @Autowired
+        public void setNoBean3(Optional<Member> member){
+            System.out.println("setNoBean3 = " + member);
+        }
+
 
     }
 }

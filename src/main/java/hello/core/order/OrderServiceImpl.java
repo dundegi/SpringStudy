@@ -20,11 +20,11 @@ public class OrderServiceImpl implements OrderService{
     private final DiscountPolicy discountPolicy;  //인터페이스에 대한 의존, 그러나 null
 
 
-    @Autowired                                                  //생성자 자동 주입,
-    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired                                                  //생성자 자동 주입,
+//    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
